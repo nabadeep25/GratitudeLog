@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gratitude Log</string>
+    <string name="app_title">Self Gratitude</string>
+    <string name="gratitude_text">Today I am Greatfull For</string>
 </resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "956635073837",
+    "firebase_url": "https://gratitude-log.firebaseio.com",
+    "project_id": "gratitude-log",
+    "storage_bucket": "gratitude-log.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956635073837:android:3ec6469c6511094a4957a4",
+        "android_client_info": {
+          "package_name": "com.nabadeep.gratitudelog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956635073837-2v8bi39vmu6buq4rut7fldlvp1jk97bo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3-wPru3G8EO_rBmLZeSeNcqQSclv-yco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956635073837-2v8bi39vmu6buq4rut7fldlvp1jk97bo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
