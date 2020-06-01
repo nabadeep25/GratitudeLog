@@ -3,6 +3,7 @@ package com.nabadeep.gratitudelog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,10 +21,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import Utility.LogApi;
 
 public class SignUp extends AppCompatActivity {
   private   FirebaseAuth firebaseAuth;
@@ -89,15 +93,32 @@ public class SignUp extends AppCompatActivity {
            public void onComplete(@NonNull Task<AuthResult> task) {
                if(task.isSuccessful()){
             currentuser=firebaseAuth.getCurrentUser();
-            String UserId=currentuser.getUid();
+            final String UserId=currentuser.getUid();
                    Map<String,String> userObj=new HashMap<>();
-                   userObj.put("User Id",UserId);
-                   userObj.put("user name",username);
-                   collectionReference.add(userObj).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                   userObj.put("UserId",UserId);
+                   userObj.put("username",username);
+                   collectionReference.add(userObj)
+                           .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                        @Override
                        public void onSuccess(DocumentReference documentReference) {
-//comlete
-
+                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.getResult().exists()){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    String name=task.getResult().getString("usename");
+                        LogApi logApi=LogApi.getInstance();
+                        logApi.setUserName(name);
+                        logApi.setUserId(UserId);
+                    Intent intent=new Intent(SignUp.this,AddLog.class);
+                    intent.putExtra("username",name);
+                    intent.putExtra("userid",UserId);
+                    startActivity(intent);
+                    }else{
+                        //if user doesnt exist
+                    }
+                    }
+                });
 
 
                        }
