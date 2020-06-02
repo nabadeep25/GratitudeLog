@@ -106,13 +106,11 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if(task.getResult().exists()){
                     progressBar.setVisibility(View.INVISIBLE);
-                    String name=task.getResult().getString("usename");
+                    String name=task.getResult().getString("username");
                         LogApi logApi=LogApi.getInstance();
                         logApi.setUserName(name);
                         logApi.setUserId(UserId);
                     Intent intent=new Intent(SignUp.this,AddLog.class);
-                    intent.putExtra("username",name);
-                    intent.putExtra("userid",UserId);
                     startActivity(intent);
                     }else{
                         //if user doesnt exist

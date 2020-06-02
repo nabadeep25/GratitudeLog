@@ -76,6 +76,7 @@
         android:hint="I am greatfull for...."
         android:inputType="textMultiLine|textPersonName"
         android:textAlignment="center"
+
         app:layout_constraintBottom_toTopOf="@+id/saveLogButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

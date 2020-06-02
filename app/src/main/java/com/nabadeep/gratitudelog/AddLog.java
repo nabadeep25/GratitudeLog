@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,7 +75,15 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
 
      progressBar.setVisibility(View.INVISIBLE);
 
+
+     gratitudeText.setScroller(new Scroller(AddLog.this));
+      gratitudeText.setMaxLines(2);
+      gratitudeText.setVerticalScrollBarEnabled(true);
+      gratitudeText.setMovementMethod(new ScrollingMovementMethod());
+
+
        uploadimageButton.setOnClickListener(this);
+
        saveButton.setOnClickListener(this);
        if(LogApi.getInstance()!=null){
            userid=LogApi.getInstance().getUserId();
