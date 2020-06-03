@@ -51,7 +51,7 @@ private Uri imageUri;
 
 private String userid;
 private String username;
-  private   String savedUrl;
+  private   String savedUrl=null;
 private FirebaseAuth firebaseAuth;
 private  FirebaseAuth.AuthStateListener authStateListener;
 private FirebaseUser user;
@@ -126,17 +126,21 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
       String gBody=gratitudeText.getText().toString().trim();
       if(!TextUtils.isEmpty(gHeading) && !TextUtils.isEmpty(gBody)){
           if(imageUri!=null) {
+              Log.d("URI", "uri: "+imageUri);
+
               final StorageReference path = storageReference.child("gratitude")
                       .child("userImage" + Timestamp.now().getSeconds());
+
               path.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                   @Override
                   public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                      progressBar.setVisibility(View.INVISIBLE);
+
                       path.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                           @Override
                           public void onSuccess(Uri uri) {
                               savedUrl=uri.toString();
+
                           }
                       });
 
@@ -144,7 +148,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
               }).addOnFailureListener(new OnFailureListener() {
                   @Override
                   public void onFailure(@NonNull Exception e) {
-                      progressBar.setVisibility(View.INVISIBLE);
+
                   }
               });
           }
@@ -156,6 +160,8 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
           //error with name
           GM.setUseName(username);
           GM.setImageUrl(savedUrl);
+          Log.d("URL", "saveLogs: "+savedUrl);
+
           GM.setCreatedAt(new Timestamp(new Date()));
           collectionReference.add(GM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
               @Override
@@ -163,7 +169,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
                   //go to other activity
                   progressBar.setVisibility(View.INVISIBLE);
 
-                  finish();
+
               }
           }).addOnFailureListener(new OnFailureListener() {
               @Override
@@ -184,6 +190,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
             if(data!=null){
                  imageUri = data.getData();
                  addedImage.setImageURI(imageUri);
+
             }
         }
     }
