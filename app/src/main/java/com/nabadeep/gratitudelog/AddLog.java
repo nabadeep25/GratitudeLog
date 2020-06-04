@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -64,6 +65,8 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_log);
        firebaseAuth=FirebaseAuth.getInstance();
+       storageReference= FirebaseStorage.getInstance().getReference();
+
        progressBar=findViewById(R.id.progressBar2);
        saveButton=findViewById(R.id.saveLogButton);
        heading=findViewById(R.id.logHeading);
@@ -122,11 +125,11 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
     private void saveLogs() {
 
       progressBar.setVisibility(View.VISIBLE);
-      String gHeading=heading.getText().toString().trim();
-      String gBody=gratitudeText.getText().toString().trim();
+      final String gHeading=heading.getText().toString().trim();
+      final String gBody=gratitudeText.getText().toString().trim();
       if(!TextUtils.isEmpty(gHeading) && !TextUtils.isEmpty(gBody)){
           if(imageUri!=null) {
-              Log.d("URI", "uri: "+imageUri);
+
 
               final StorageReference path = storageReference.child("gratitude")
                       .child("userImage" + Timestamp.now().getSeconds());
@@ -140,7 +143,8 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
                           @Override
                           public void onSuccess(Uri uri) {
                               savedUrl=uri.toString();
-
+                              Log.d("URI", "uri: "+uri);
+                              savetodb(gHeading,gBody);
                           }
                       });
 
@@ -148,39 +152,46 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
               }).addOnFailureListener(new OnFailureListener() {
                   @Override
                   public void onFailure(@NonNull Exception e) {
-
+                      Log.d("URI", "onFailure: "+e.getMessage());
                   }
               });
           }
+          else{
+              savetodb(gHeading,gBody);
+          }
 
-          Gratitudemodel GM=new Gratitudemodel();
-          GM.setTitle(gHeading);
-          GM.setBody(gBody);
-          GM.setUserId(userid);
-          //error with name
-          GM.setUseName(username);
-          GM.setImageUrl(savedUrl);
-          Log.d("URL", "saveLogs: "+savedUrl);
-
-          GM.setCreatedAt(new Timestamp(new Date()));
-          collectionReference.add(GM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-              @Override
-              public void onSuccess(DocumentReference documentReference) {
-                  //go to other activity
-                  progressBar.setVisibility(View.INVISIBLE);
-
-
-              }
-          }).addOnFailureListener(new OnFailureListener() {
-              @Override
-              public void onFailure(@NonNull Exception e) {
-                  Log.d("ADDLOG", "onFailure: "+e.getMessage());
-              }
-          });
 
       }else{
           Toast.makeText(this,"Empty Fields",Toast.LENGTH_LONG).show();
       }
+    }
+
+    private void savetodb(String gHeading, String gBody) {
+        Gratitudemodel GM=new Gratitudemodel();
+        GM.setTitle(gHeading);
+        GM.setBody(gBody);
+        GM.setUserId(userid);
+        //error with name
+        GM.setUseName(username);
+        GM.setImageUrl(savedUrl);
+        Log.d("URL", "saveLogs: "+savedUrl);
+
+        GM.setCreatedAt(new Timestamp(new Date()));
+        collectionReference.add(GM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                //go to other activity
+                progressBar.setVisibility(View.INVISIBLE);
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("ADDLOG", "onFailure: "+e.getMessage());
+            }
+        });
+
     }
 
     @Override
