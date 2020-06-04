@@ -87,7 +87,7 @@ private EditText Password;
                                     for(QueryDocumentSnapshot snapshot: queryDocumentSnapshots){
                                         logApi.setUserName(snapshot.getString("username"));
                                         logApi.setUserId(snapshot.getString("UserId"));
-                                        startActivity(new Intent(Login.this,AddLog.class));
+                                        startActivity(new Intent(Login.this,ListLogs.class));
                                         //todo
                                     }
                                 }

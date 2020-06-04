@@ -180,7 +180,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
         collectionReference.add(GM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                //go to other activity
+                startActivity(new Intent(AddLog.this,ListLogs.class));
                 progressBar.setVisibility(View.INVISIBLE);
 
 
