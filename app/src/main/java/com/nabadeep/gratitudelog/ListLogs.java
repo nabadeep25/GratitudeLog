@@ -32,6 +32,7 @@ import Utility.LogApi;
 import model.Gratitudemodel;
 
 public class ListLogs extends AppCompatActivity {
+    private static final String TAG ="List Log" ;
     private FirebaseAuth firebaseAuth;
     private  FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
@@ -54,7 +55,7 @@ public class ListLogs extends AppCompatActivity {
         user=firebaseAuth.getCurrentUser();
         empty=findViewById(R.id.EmptyList);
         list=new ArrayList<>();
-
+        Log.d(TAG, "onCreate: ");
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -73,7 +74,7 @@ public class ListLogs extends AppCompatActivity {
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if(queryDocumentSnapshots!=null){
+                if(!queryDocumentSnapshots.isEmpty()){
                     for (QueryDocumentSnapshot snapshots:queryDocumentSnapshots){
                         Gratitudemodel model=snapshots.toObject(Gratitudemodel.class);
                         list.add(model);
@@ -81,10 +82,10 @@ public class ListLogs extends AppCompatActivity {
                     recylerViewAdapter=new RecylerViewAdapter(ListLogs.this,list);
 
 
-
-
+                    Log.d(TAG, "onSuccess: "+list);
                     recyclerView.setAdapter(recylerViewAdapter);
                     recylerViewAdapter.notifyDataSetChanged();
+                    Log.d(TAG, "onSuccess:afer");
 
                 }else{
                     empty.setVisibility(View.VISIBLE);
