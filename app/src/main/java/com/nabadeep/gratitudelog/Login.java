@@ -77,29 +77,33 @@ private EditText Password;
         firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                FirebaseUser user=firebaseAuth.getCurrentUser();
-                String currentUserId=user.getUid();
-                collectionReference.whereEqualTo("UserId",currentUserId).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                if(!queryDocumentSnapshots.isEmpty()){
-                                    LogApi logApi=LogApi.getInstance();
-                                    for(QueryDocumentSnapshot snapshot: queryDocumentSnapshots){
-                                        logApi.setUserName(snapshot.getString("username"));
-                                        logApi.setUserId(snapshot.getString("UserId"));
-                                        startActivity(new Intent(Login.this,ListLogs.class));
-                                        //todo
-                                    }
-                                }
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if(e!=null) {
-                    Toast.makeText(Login.this, "Some Error Occured ", Toast.LENGTH_SHORT).show();
-                }
+
+
+
+               if(task.isSuccessful()){
+                   FirebaseUser user=firebaseAuth.getCurrentUser();
+                   String currentUserId=user.getUid();
+                   collectionReference.whereEqualTo("UserId",currentUserId).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                       @Override
+                       public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                           if(!queryDocumentSnapshots.isEmpty()){
+                               LogApi logApi=LogApi.getInstance();
+                               for(QueryDocumentSnapshot snapshot: queryDocumentSnapshots){
+                                   logApi.setUserName(snapshot.getString("username"));
+                                   logApi.setUserId(snapshot.getString("UserId"));
+                                   startActivity(new Intent(Login.this,ListLogs.class));
+                                   //todo
+                                   
+                                   finish();
+                               }
+                           }
+                       }
+                   });
+               }else{
+                   Toast.makeText(Login.this,"Failed to login",Toast.LENGTH_SHORT).show();
+               }
+
+
             }
         });
     }
