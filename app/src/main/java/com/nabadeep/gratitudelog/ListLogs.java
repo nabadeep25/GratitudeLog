@@ -43,7 +43,7 @@ public class ListLogs extends AppCompatActivity {
 
     private List<Gratitudemodel> list;
     private RecyclerView recyclerView;
-    RecylerViewAdapter recylerViewAdapter;
+    private RecylerViewAdapter recylerViewAdapter;
     private TextView empty;
 
 
@@ -51,6 +51,7 @@ public class ListLogs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_logs);
+
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
         empty=findViewById(R.id.EmptyList);
@@ -59,7 +60,7 @@ public class ListLogs extends AppCompatActivity {
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(ListLogs.this);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
 
@@ -74,6 +75,8 @@ public class ListLogs extends AppCompatActivity {
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                Log.d(TAG, "onSuccess: "+queryDocumentSnapshots+"user:"+LogApi.getInstance().getUserName());
+
                 if(!queryDocumentSnapshots.isEmpty()){
                     for (QueryDocumentSnapshot snapshots:queryDocumentSnapshots){
                         Gratitudemodel model=snapshots.toObject(Gratitudemodel.class);
