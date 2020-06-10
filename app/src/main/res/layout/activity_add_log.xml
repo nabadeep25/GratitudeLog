@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
         android:src="@drawable/defaultpicture"
         />
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -72,9 +72,9 @@
         android:id="@+id/logDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
+
         android:hint="I am greatfull for...."
-        android:inputType="textMultiLine|textPersonName"
+        android:inputType="textMultiLine"
         android:textAlignment="center"
 
         app:layout_constraintBottom_toTopOf="@+id/saveLogButton"
