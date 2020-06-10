@@ -93,7 +93,7 @@ private EditText Password;
                                    logApi.setUserId(snapshot.getString("UserId"));
                                    startActivity(new Intent(Login.this,ListLogs.class));
                                    //todo
-                                   
+
                                    finish();
                                }
                            }

@@ -23,27 +23,28 @@ import model.Gratitudemodel;
 
 import static android.content.ContentValues.TAG;
 
-public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<Gratitudemodel> logList;
 
-    public RecylerViewAdapter(Context context, List<Gratitudemodel> logList) {
+    public RecyclerViewAdapter(Context context, List<Gratitudemodel> logList) {
         this.context = context;
         this.logList = logList;
     }
 
     @NonNull
     @Override
-    public RecylerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(context).inflate(R.layout.log_item,parent,false);
         return new ViewHolder(view,context);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecylerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, int position) {
     Gratitudemodel gratitude=logList.get(position);
+        Log.d(TAG, "onBindViewHolder: "+gratitude);
     String url=gratitude.getImageUrl();
-    holder.heading.setText(gratitude.getTitle());
+ holder.heading.setText(gratitude.getTitle());
     holder.body.setText(gratitude.getBody());
         Picasso.get().load(url).placeholder(R.drawable.defaultpicture).fit().into(holder.img);
         String date= (String) DateFormat.format("hh:mm a dd-mm-yyyy",gratitude.getCreatedAt().getSeconds()*1000);
@@ -63,7 +64,7 @@ public class RecylerViewAdapter extends RecyclerView.Adapter<RecylerViewAdapter.
             super(itemView);
             context=ctx;
             img=itemView.findViewById(R.id.log_image);
-            heading=itemView.findViewById(R.id.logHeading);
+            heading=itemView.findViewById(R.id.log_header);
             body=itemView.findViewById(R.id.log_body);
         }
     }

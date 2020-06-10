@@ -27,7 +27,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.RecylerViewAdapter;
+import Adapter.RecyclerViewAdapter;
+
 import Utility.LogApi;
 import model.Gratitudemodel;
 
@@ -43,7 +44,7 @@ public class ListLogs extends AppCompatActivity {
 
     private List<Gratitudemodel> list;
     private RecyclerView recyclerView;
-    private RecylerViewAdapter recylerViewAdapter;
+    private RecyclerViewAdapter recyclerViewAdapter;
     private TextView empty;
 
 
@@ -71,23 +72,27 @@ public class ListLogs extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        collectionReference.whereEqualTo("UserId", LogApi.getInstance().getUserId())
+
+        collectionReference.whereEqualTo("userId", LogApi.getInstance().getUserId())
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                Log.d(TAG, "onSuccess: "+queryDocumentSnapshots+"user:"+LogApi.getInstance().getUserName());
+                Log.d(TAG, "onSuccess: "+queryDocumentSnapshots.isEmpty());
 
                 if(!queryDocumentSnapshots.isEmpty()){
                     for (QueryDocumentSnapshot snapshots:queryDocumentSnapshots){
                         Gratitudemodel model=snapshots.toObject(Gratitudemodel.class);
                         list.add(model);
                     }
-                    recylerViewAdapter=new RecylerViewAdapter(ListLogs.this,list);
+                    Log.d(TAG, "List: "+list);
+                    recyclerViewAdapter=new RecyclerViewAdapter(ListLogs.this,list);
 
 
-                    Log.d(TAG, "onSuccess: "+list);
-                    recyclerView.setAdapter(recylerViewAdapter);
-                    recylerViewAdapter.notifyDataSetChanged();
+                    Log.d(TAG, "onSuccess2: "+list);
+                    recyclerView.setAdapter(recyclerViewAdapter);
+                    recyclerViewAdapter.notifyDataSetChanged();
                     Log.d(TAG, "onSuccess:afer");
 
                 }else{
