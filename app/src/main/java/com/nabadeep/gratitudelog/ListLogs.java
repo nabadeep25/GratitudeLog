@@ -92,7 +92,7 @@ public class ListLogs extends AppCompatActivity {
 
                     Log.d(TAG, "onSuccess2: "+list);
                     recyclerView.setAdapter(recyclerViewAdapter);
-                    recyclerViewAdapter.notifyDataSetChanged();
+                   updatelist();
                     Log.d(TAG, "onSuccess:afer");
 
                 }else{
@@ -130,5 +130,11 @@ public class ListLogs extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    //
+    public void updatelist(){
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 }

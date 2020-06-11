@@ -8,6 +8,7 @@ public class Gratitudemodel {
 
 
 
+
     private  String imageUrl;
     private String userId;
 
@@ -17,6 +18,9 @@ public class Gratitudemodel {
     private Timestamp createdAt;
     public Gratitudemodel() {
     }
+
+
+
     public Gratitudemodel(String title, String body, String imageUrl, String userId, String useName, Timestamp createdAt) {
         this.title = title;
         this.body = body;
@@ -24,6 +28,8 @@ public class Gratitudemodel {
         this.userId = userId;
         this.useName = useName;
         this.createdAt = createdAt;
+
+
     }
 
     public String getTitle() {
