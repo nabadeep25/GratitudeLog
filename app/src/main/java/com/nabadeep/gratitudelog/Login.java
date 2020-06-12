@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +43,7 @@ private EditText Password;
     private FirebaseUser currentuser;
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
     private CollectionReference collectionReference=db.collection("Users");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,8 @@ private EditText Password;
     }
 
     private void loginToFirebase(String email, String pass) {
+
+
         firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -91,6 +96,7 @@ private EditText Password;
                                for(QueryDocumentSnapshot snapshot: queryDocumentSnapshots){
                                    logApi.setUserName(snapshot.getString("username"));
                                    logApi.setUserId(snapshot.getString("UserId"));
+
                                    startActivity(new Intent(Login.this,ListLogs.class));
                                    //todo
 

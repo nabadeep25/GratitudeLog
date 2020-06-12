@@ -55,10 +55,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder holder, final int position) {
     Gratitudemodel gratitude=logList.get(position);
         Log.d(TAG, "onBindViewHolder: "+gratitude);
-    String url=gratitude.getImageUrl();
+
  holder.heading.setText(gratitude.getTitle());
     holder.body.setText(gratitude.getBody());
-        Picasso.get().load(url).placeholder(R.drawable.defaultpicture).fit().into(holder.img);
+
         String date= (String) DateFormat.format("hh:mm a dd-mm-yyyy",gratitude.getCreatedAt().getSeconds()*1000);
         Log.d(TAG, "onBindViewHolder: "+date);
         holder.imgbtn.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public ViewHolder(@NonNull View itemView,Context ctx) {
             super(itemView);
             context=ctx;
-            img=itemView.findViewById(R.id.log_image);
+
             heading=itemView.findViewById(R.id.log_header);
             body=itemView.findViewById(R.id.log_body);
             imgbtn=itemView.findViewById(R.id.deletebutton);

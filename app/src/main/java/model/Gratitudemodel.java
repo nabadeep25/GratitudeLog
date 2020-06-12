@@ -9,7 +9,7 @@ public class Gratitudemodel {
 
 
 
-    private  String imageUrl;
+
     private String userId;
 
 
@@ -21,10 +21,10 @@ public class Gratitudemodel {
 
 
 
-    public Gratitudemodel(String title, String body, String imageUrl, String userId, String useName, Timestamp createdAt) {
+    public Gratitudemodel(String title, String body,  String userId, String useName, Timestamp createdAt) {
         this.title = title;
         this.body = body;
-        this.imageUrl = imageUrl;
+
         this.userId = userId;
         this.useName = useName;
         this.createdAt = createdAt;
@@ -48,13 +48,6 @@ public class Gratitudemodel {
         this.body = body;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public String getUserId() {
         return userId;

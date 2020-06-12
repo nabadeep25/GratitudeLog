@@ -7,17 +7,20 @@
     android:orientation="vertical"
     tools:context=".AddLog">
 
+     <TextView
+         android:layout_marginTop="30dp"
+         android:layout_gravity="center"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="What are you greatfull for"
+         android:textAlignment="center"
+         android:background="@drawable/roundbtn"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:src="@drawable/defaultpicture"
-        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         >
 
         <TextView
@@ -31,16 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
 
         <TextView
             android:id="@+id/showusername"
@@ -86,12 +80,9 @@
         android:layout_height="wrap_content"
         android:text="SAVE"
         android:layout_gravity="center"
+        android:background="@color/bg"
         />
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
