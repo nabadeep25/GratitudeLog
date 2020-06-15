@@ -140,6 +140,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
 
 
         GM.setCreatedAt(new Timestamp(new Date()));
+
         collectionReference.add(GM).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {

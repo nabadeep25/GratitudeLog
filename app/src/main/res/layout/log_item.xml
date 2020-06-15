@@ -13,9 +13,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+
     >
 
-
+    <TextView
+        android:textAlignment="center"
+        android:id="@+id/log_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="header" />
 
     <TextView
         android:textAlignment="center"
@@ -24,26 +30,24 @@
         android:layout_height="wrap_content"
         android:hint="Body" />
 
-    <TextView
-        android:textAlignment="center"
-        android:id="@+id/log_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="header" />
+
 </LinearLayout>
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|bottom"
-        android:src="@android:drawable/ic_menu_edit" />
+        android:src="@android:drawable/ic_menu_edit"
+        android:id="@+id/editbutton"
+        />
     <ImageButton
         android:id="@+id/deletebutton"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@android:drawable/ic_menu_delete" />
+        android:src="@android:drawable/ic_menu_delete"
+        />
     </androidx.cardview.widget.CardView>
 
 
