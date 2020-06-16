@@ -5,16 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddLog">
+    tools:context=".AddLog"
+    android:background="@drawable/bg"
+    >
 
-     <TextView
-         android:layout_marginTop="30dp"
-         android:layout_gravity="center"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="What are you greatfull for"
-         android:textAlignment="center"
-         android:background="@drawable/roundbtn"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_marginTop="30dp"
+        android:autoText="false"
+        android:background="@drawable/roundbtn"
+        android:fontFamily="cursive"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="What are you greatfull for"
+        android:textAlignment="center"
+        android:textSize="22dp"
+        app:autoSizeMaxTextSize="25dp"
+        app:autoSizeMinTextSize="22dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,9 +61,9 @@
 
     <EditText
         android:id="@+id/logHeading"
-        android:layout_width="402dp"
-        android:layout_height="56dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
         android:hint="Heading"
         android:inputType="textPersonName"
         android:textAlignment="center"
@@ -66,7 +75,7 @@
         android:id="@+id/logDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="10dp"
         android:hint="I am greatfull for...."
         android:inputType="textMultiLine"
         android:textAlignment="center"
@@ -74,13 +83,16 @@
         app:layout_constraintBottom_toTopOf="@+id/saveLogButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/saveLogButton"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SAVE"
         android:layout_gravity="center"
-        android:background="@color/bg"
+        android:background="@color/colorAccent"
+
         />
 
 

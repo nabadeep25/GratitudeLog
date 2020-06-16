@@ -53,6 +53,8 @@ public class ListLogs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_logs);
 
+        getSupportActionBar().setElevation(0);
+
         firebaseAuth=FirebaseAuth.getInstance();
         user=firebaseAuth.getCurrentUser();
         empty=findViewById(R.id.EmptyList);

@@ -64,7 +64,7 @@ private CollectionReference collectionReference=db.collection("GratitudeLog");
         setContentView(R.layout.activity_add_log);
        firebaseAuth=FirebaseAuth.getInstance();
 
-
+      getSupportActionBar().setElevation(0);
 
        saveButton=findViewById(R.id.saveLogButton);
        heading=findViewById(R.id.logHeading);

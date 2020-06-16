@@ -49,6 +49,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         firebaseAuth=FirebaseAuth.getInstance();
 
+     getSupportActionBar().setElevation(0);
 
         progressBar=findViewById(R.id.sprogressBar);
         sigunup=findViewById(R.id.SignUp);

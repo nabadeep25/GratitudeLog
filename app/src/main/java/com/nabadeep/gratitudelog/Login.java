@@ -49,7 +49,7 @@ private EditText Password;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
-
+        getSupportActionBar().setElevation(0);
         firebaseAuth=FirebaseAuth.getInstance();
 
         LogIn=findViewById(R.id.login);

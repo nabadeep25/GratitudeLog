@@ -83,6 +83,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           }
       }
   });
+                notifyDataSetChanged();
             }
 
         });
@@ -91,6 +92,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
           @Override
           public void onClick(View view) {
            updatelog(gratitude);
+
               notifyDataSetChanged();
           }
       });

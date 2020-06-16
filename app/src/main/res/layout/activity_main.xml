@@ -29,11 +29,11 @@
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal|center_vertical">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            card_view:cardBackgroundColor="@color/bg"
+            card_view:cardBackgroundColor="@color/bgend"
             card_view:cardCornerRadius="20dp"
             android:foregroundGravity="center"
             card_view:cardElevation="10dp"
